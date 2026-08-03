@@ -33,14 +33,17 @@ export function Navbar() {
           scrolled ? "glass shadow-soft" : "border border-transparent"
         }`}
       >
-        <a href="#top" className="flex min-w-0 items-center gap-2">
-          <span className="bg-gradient-brand grid h-9 w-9 shrink-0 place-items-center rounded-xl font-display text-sm font-bold text-white">
-            SA
-          </span>
-          <span className="truncate font-display text-sm font-semibold tracking-tight">
-            Safiullah Arain
-          </span>
-        </a>
+      <a href="#top" className="flex min-w-0 items-center">
+    {/* Logo Image - replace src with your actual logo path */}
+    <img
+      src="/image.png" // 👈 yahan apni logo ki path daalein
+      alt="Safiullah Arain Logo"
+      className="h-9 w-9 rounded-xl object-cover"
+    />
+    <span className="truncate font-display text-2xl font-bold tracking-tight">
+      afiullah
+    </span>
+  </a>
 
         <div className="flex items-center gap-1.5">
           <ul className="mr-2 hidden items-center gap-1 lg:flex">
