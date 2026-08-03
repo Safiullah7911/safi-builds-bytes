@@ -128,7 +128,7 @@ export function Hero() {
             {[
               { icon: Github, href: "https://github.com/Safiullah7911", label: "GitHub" },
               { icon: Linkedin, href: "https://www.linkedin.com/in/safiullah-arain-a8604a399/", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:safiarain273@gmail.com", label: "Email" },
+              { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=safiarain273@gmail.com", label: "Email" },
             ].map(({ icon: Icon, href, label }) => (
               <a
                 key={label}

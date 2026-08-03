@@ -129,10 +129,13 @@ export function Contact() {
                 </a>
               </p>
               <p className="mt-3 text-center text-xs text-muted-foreground">
-                Or email us directly:{" "}
-                <a href="mailto:safiarain273@gmail.com" className="font-semibold text-primary hover:underline">
-                  safiarain273@gmail.com
-                </a>
+                Email Me:{" "}                <a
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=safiarain273@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Safiarain273@gmail.com
+</a>
               </p>
             </form>
           </Reveal>
