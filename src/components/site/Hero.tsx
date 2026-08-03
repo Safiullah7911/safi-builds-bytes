@@ -105,7 +105,7 @@ export function Hero() {
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="/resume.pdf"
+              href="/Safiullah-Cv.pdf"
               download
               className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors hover:text-primary"
             >
