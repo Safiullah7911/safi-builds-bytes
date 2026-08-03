@@ -60,7 +60,7 @@ export function Navbar() {
             href="#contact"
             className="bg-gradient-brand hidden shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.04] sm:inline-flex"
           >
-            Hire me
+            Contact me
           </a>
           <button
             aria-label="Open menu"
