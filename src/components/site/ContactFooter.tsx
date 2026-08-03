@@ -128,6 +128,12 @@ export function Contact() {
                   +92 333 3139121
                 </a>
               </p>
+              <p className="mt-3 text-center text-xs text-muted-foreground">
+                Or email us directly:{" "}
+                <a href="mailto:safiarain273@gmail.com" className="font-semibold text-primary hover:underline">
+                  safiarain273@gmail.com
+                </a>
+              </p>
             </form>
           </Reveal>
         </div>
