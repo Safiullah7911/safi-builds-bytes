@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Mail, Github, Linkedin, MapPin } from "lucide-react";
-import profileAsset from "@/assets/profile.png.asset.json";
+import profileAsset from "@/assets/My-profile.png";
 
 const ROLES = ["Software Engineer", "Frontend Developer", "Full Stack Developer", "AI Developer"];
 
@@ -69,7 +69,7 @@ export function Hero() {
           >
             Hi, I'm
             <br />
-            <span className="text-gradient">Safiullah Arain</span>
+            <span className="text-gradient">Safiullah </span>
           </motion.h1>
 
           <motion.p
@@ -158,7 +158,9 @@ export function Hero() {
           >
             <div className="bg-gradient-brand absolute inset-0 opacity-15" />
             <img
-              src={profileAsset.url}
+              src={profileAsset}
+              // href={/My-profile.png}
+              
               alt="Safiullah Arain, Software Engineer, at his development workstation"
               width={640}
               height={640}

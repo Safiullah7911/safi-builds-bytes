@@ -5,10 +5,10 @@ import { Reveal, SectionHeading } from "./primitives";
 
 const DETAILS = [
   { icon: Mail, label: "Email", value: "safiarain273@gmail.com", href: "mailto:safiarain273@gmail.com" },
-  { icon: Phone, label: "Phone", value: "+92 333 3139121", href: "tel:+923333139121" },
+  // { icon: Phone, label: "Phone", value: "+92 333 3139121", href: "tel:+923333139121" },
   { icon: MessageCircle, label: "WhatsApp", value: "+92 333 3139121", href: "https://wa.me/923333139121" },
   { icon: Linkedin, label: "LinkedIn", value: "Safiullah Arain", href: "https://linkedin.com/" },
-  { icon: Github, label: "GitHub", value: "@safiullaharain", href: "https://github.com/" },
+  { icon: Github, label: "GitHub", value: "@safiullah7911", href: "https://github.com/" },
   { icon: MapPin, label: "Location", value: "Karachi, Pakistan", href: "#contact" },
 ];
 
