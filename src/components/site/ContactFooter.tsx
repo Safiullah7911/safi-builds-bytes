@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Github, Linkedin, MessageCircle, Send, Check } from "lucide-react";
 import { Reveal, SectionHeading } from "./primitives";
+import emailjs from "@emailjs/browser";
 
 const DETAILS = [
   { icon: Mail, label: "Email", value: "safiarain273@gmail.com", href: "mailto:safiarain273@gmail.com" },
@@ -16,15 +17,66 @@ export function Contact() {
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:safiarain273@gmail.com?subject=${encodeURIComponent(
-      `Portfolio enquiry from ${form.name}`,
-    )}&body=${body}`;
+  // const submit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+  //   window.location.href = `mailto:safiarain273@gmail.com?subject=${encodeURIComponent(
+  //     `Portfolio enquiry from ${form.name}`,
+  //   )}&body=${body}`;
+  //   setSent(true);
+  //   setTimeout(() => setSent(false), 4000);
+  // };
+const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  try {
+   const response = await emailjs.send(
+  "service_ctb0wqh",
+  "template_sgqbqtn",   // Note: double 'g' => sggbqtn
+  {
+    user_name: form.name,
+    user_email: form.email,
+    message: form.message,
+  },
+  "S-KIHKfGIqqv2Q8ny"   // Note: 'IHK' (I-H-K), 'l' nahi hai
+);
+
+
+// 🤖 2. Auto-Reply (User ko mail)  <--- YEH CHECK KAREIN
+    await emailjs.send(
+      "service_ctb0wqh",
+      "template_fv19cmm",   // ✅ Auto-Reply ID (bilkul yehi likha hai na?)
+      {
+        to_name: form.name,
+        to_email: form.email,
+        user_message: form.message,
+      },
+      "S-KIHKfGIqqv2Q8ny"
+    );
+
+    // Success
     setSent(true);
-    setTimeout(() => setSent(false), 4000);
-  };
+    setForm({ name: "", email: "", message: "" });
+    setTimeout(() => setSent(false), 3000);
+
+
+    console.log("Email sent successfully:", response);
+
+    setSent(true);
+
+    setForm({
+      name: "",
+      email: "",
+      message: "",
+    });
+
+    setTimeout(() => setSent(false), 3000);
+
+  } catch (err) {
+    console.error("EmailJS Error:", err);
+    alert("Failed to send message");
+  }
+};
 
   const field =
     "w-full rounded-2xl border border-glass-border bg-secondary/50 px-4 py-3 text-sm outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/25";
