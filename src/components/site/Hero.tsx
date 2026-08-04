@@ -164,20 +164,42 @@ export function Hero() {
           className="relative mx-auto w-full max-w-sm"
         >
           <div className="glow-blob absolute inset-0 -z-10 scale-110 rounded-full opacity-80" />
+          {/* orbiting tech ring */}
+          <div className="pointer-events-none absolute inset-0 -z-10 grid place-items-center">
+            <div className="animate-spin-slow relative h-[125%] w-[125%] rounded-full border border-dashed border-primary/20">
+              {["React", "Next.js", "TS", "Node"].map((t, i) => (
+                <span
+                  key={t}
+                  className="glass absolute left-1/2 top-1/2 rounded-full px-2.5 py-1 text-[10px] font-semibold text-muted-foreground"
+                  style={{
+                    transform: `rotate(${i * 90}deg) translateY(-50%) translate(0, -${11}rem) rotate(-${i * 90}deg)`,
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
           <motion.div
             animate={{ y: [0, -14, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.03, rotate: -1.5 }}
             className="glass relative overflow-hidden rounded-[2rem] p-2 shadow-glow"
           >
             <div className="bg-gradient-brand absolute inset-0 opacity-15" />
             <img
               src={profileAsset}
-              // href={/My-profile.png}
-              
               alt="Safiullah Arain, Software Engineer, at his development workstation"
               width={640}
               height={640}
               className="relative w-full rounded-[1.6rem] object-cover"
+            />
+            <motion.div
+              aria-hidden
+              initial={{ x: "-120%" }}
+              animate={{ x: ["-120%", "220%"] }}
+              transition={{ duration: 4.5, repeat: Infinity, repeatDelay: 2.5, ease: "easeInOut" }}
+              className="absolute inset-y-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent"
             />
           </motion.div>
 
@@ -199,6 +221,24 @@ export function Hero() {
           </motion.div>
         </motion.div>
       </div>
+
+      <motion.a
+        href="#about"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="mx-auto mt-20 hidden w-fit flex-col items-center gap-2 text-xs text-muted-foreground md:flex"
+      >
+        Scroll to explore
+        <span className="relative grid h-9 w-5 place-items-start justify-center rounded-full border border-border p-1">
+          <motion.span
+            className="h-1.5 w-1.5 rounded-full bg-primary"
+            animate={{ y: [0, 14, 0], opacity: [1, 0.2, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </span>
+      </motion.a>
     </section>
   );
+
 }
