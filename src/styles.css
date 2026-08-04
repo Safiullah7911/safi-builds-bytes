@@ -160,6 +160,18 @@
   }
 }
 
+@utility noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+@utility aurora-sheet {
+  background:
+    radial-gradient(45% 40% at 15% 20%, color-mix(in oklab, var(--primary) 40%, transparent), transparent 70%),
+    radial-gradient(40% 35% at 85% 15%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 70%),
+    radial-gradient(50% 45% at 50% 90%, color-mix(in oklab, var(--primary) 28%, transparent), transparent 70%);
+  filter: blur(40px);
+}
+
 @keyframes float-slow {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
   50% { transform: translate3d(0, -30px, 0) scale(1.06); }
@@ -175,6 +187,32 @@
   50%, 100% { opacity: 0; }
 }
 
+@keyframes grid-drift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 64px 64px, 64px 64px; }
+}
+
+@keyframes aurora-shift {
+  0%, 100% { transform: translate3d(-3%, 0, 0) scale(1.1) rotate(0deg); }
+  50% { transform: translate3d(3%, -3%, 0) scale(1.25) rotate(8deg); }
+}
+
+@keyframes beam-fall {
+  0% { transform: translateY(-100%); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
 @utility animate-float-slow {
   animation: float-slow 12s ease-in-out infinite;
 }
@@ -186,3 +224,33 @@
 @utility animate-caret {
   animation: caret 1s step-end infinite;
 }
+
+@utility animate-grid-drift {
+  animation: grid-drift 14s linear infinite;
+}
+
+@utility animate-aurora {
+  animation: aurora-shift 22s ease-in-out infinite;
+}
+
+@utility animate-beam {
+  animation: beam-fall 7s linear infinite;
+}
+
+@utility animate-spin-slow {
+  animation: spin-slow 26s linear infinite;
+}
+
+@utility animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+

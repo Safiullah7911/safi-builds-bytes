@@ -59,8 +59,13 @@ export function AnimatedBackdrop() {
     dur: 7 + (i % 6),
   }));
 
+  const beams = [12, 28, 46, 64, 82, 93];
+
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      {/* aurora mesh */}
+      <div className="aurora-sheet animate-aurora absolute -inset-[20%] opacity-40 dark:opacity-50" />
+
       <div className="glow-blob animate-float-slow absolute -left-32 top-[-10%] h-[38rem] w-[38rem] rounded-full opacity-70" />
       <div
         className="glow-blob animate-float-slow absolute -right-40 top-1/3 h-[34rem] w-[34rem] rounded-full opacity-50"
@@ -70,7 +75,22 @@ export function AnimatedBackdrop() {
         className="glow-blob animate-float-slow absolute bottom-[-15%] left-1/3 h-[30rem] w-[30rem] rounded-full opacity-40"
         style={{ animationDelay: "6s" }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_oklab,var(--foreground)_6%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--foreground)_6%,transparent)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+
+      {/* drifting technical grid */}
+      <div className="animate-grid-drift absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_oklab,var(--foreground)_6%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--foreground)_6%,transparent)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+
+      {/* vertical light beams */}
+      {beams.map((left, i) => (
+        <span
+          key={left}
+          className="animate-beam absolute top-0 h-24 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent"
+          style={{ left: `${left}%`, animationDelay: `${i * 1.15}s`, animationDuration: `${6 + i}s` }}
+        />
+      ))}
+
+      {/* slow rotating conic halo */}
+      <div className="animate-spin-slow absolute left-1/2 top-1/2 h-[60rem] w-[60rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.07] [background:conic-gradient(from_0deg,transparent,var(--primary),transparent_45%,var(--accent),transparent)]" />
+
       {particles.map((p, i) => (
         <motion.span
           key={i}
@@ -80,6 +100,10 @@ export function AnimatedBackdrop() {
           transition={{ duration: p.dur, repeat: Infinity, delay: p.delay, ease: "easeInOut" }}
         />
       ))}
+
+      {/* film grain */}
+      <div className="noise-overlay absolute inset-0 opacity-[0.035] mix-blend-overlay" />
     </div>
   );
 }
+
