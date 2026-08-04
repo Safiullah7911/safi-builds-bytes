@@ -61,16 +61,29 @@ export function Hero() {
             <MapPin size={12} /> Karachi, Pakistan
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 26 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-4xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl"
-          >
-            Hi, I'm
+          <h1 className="mt-6 text-4xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
+            {["Hi,", "I'm"].map((w, i) => (
+              <motion.span
+                key={w}
+                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.8, delay: 0.1 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="mr-3 inline-block"
+              >
+                {w}
+              </motion.span>
+            ))}
             <br />
-            <span className="text-gradient">Safiullah </span>
-          </motion.h1>
+            <motion.span
+              initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.9, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
+              className="text-gradient animate-shimmer inline-block"
+            >
+              Safiullah
+            </motion.span>
+          </h1>
+
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
