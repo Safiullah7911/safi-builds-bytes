@@ -158,8 +158,39 @@ const submit = async (e: React.FormEvent<HTMLFormElement>) => {
                   placeholder="Tell me about your project…"
                   className={field}
                 />
+
+      {/* 🟢 Success Banner - Button ke upar */}
+      {sent && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-4 flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-700 dark:text-green-400"
+        >
+          <Check size={18} className="text-green-500" />
+          <span>
+            <strong>Done!</strong> Your message has been sent successfully. I'll get back to you soon! 👍
+          </span>
+        </motion.div>
+      )}
+
+      <motion.button
+        whileTap={{ scale: 0.97 }}
+        type="submit"
+        className="bg-gradient-brand mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]"
+      >
+        {sent ? (
+          <>
+            <Check size={16} /> Message sent! ✅   {/* 👈 Maine "Message ready" ko "Message sent" bhi kar diya */}
+          </>
+        ) : (
+          <>
+            <Send size={16} /> Send Message
+          </>
+        )}
+      </motion.button>
+
               </div>
-              <motion.button
+              {/* <motion.button
                 whileTap={{ scale: 0.97 }}
                 type="submit"
                 className="bg-gradient-brand mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]"
@@ -173,7 +204,7 @@ const submit = async (e: React.FormEvent<HTMLFormElement>) => {
                     <Send size={16} /> Send Message
                   </>
                 )}
-              </motion.button>
+              </motion.button> */}
               <p className="mt-3 text-center text-xs text-muted-foreground">
                 Prefer WhatsApp?{" "}
                 <a href="https://wa.me/923333139121" className="font-semibold text-primary hover:underline">
