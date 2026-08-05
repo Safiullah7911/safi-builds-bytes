@@ -1,7 +1,3 @@
-
-
-import ReactGA from 'react-ga4';
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -127,15 +123,6 @@ function RootShell({ children }: { children: ReactNode }) {
     </html>
   );
 }
-
-useEffect(() => {
-  const gaId = import.meta.env['VITE_GA_MEASUREMENT_ID'];
-  if (gaId) {
-    ReactGA.initialize(gaId);
-    // Page load par track karein
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
-  }
-}, []);
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
