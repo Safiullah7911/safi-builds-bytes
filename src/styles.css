@@ -186,3 +186,31 @@
 @utility animate-caret {
   animation: caret 1s step-end infinite;
 }
+
+/* ============================================================
+   🔥 NAYA CODE (Loader Animations) - YAHAN SE ADD KIYA HAI 🔥
+   ============================================================ */
+
+@keyframes spin_reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes loaderSlide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Utilities for Loader (Taake loader.tsx clean chale) */
+@utility animate-spin-reverse {
+  animation: spin_reverse 1.5s linear infinite;
+}
+
+@utility animate-loader-slide {
+  animation: loaderSlide 1.8s ease-in-out infinite;
+}

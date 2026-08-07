@@ -7,10 +7,12 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { cn } from "@/lib/utils"; // Shadcn ki utility (agar nahi hai toh manually className likh lena)
+import { Loader } from "@/components/ui/loader"; // Naya Loader component
 
 function NotFoundComponent() {
   return (
@@ -124,13 +126,55 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+// ============================================================
+// YAHAN SE MODIFICATION HUI HAI (Loader + Fade-in Effect)
+// ============================================================
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Agar page already load ho chuka hai toh turant hide karo
+    if (document.readyState === "complete") {
+      setTimeout(() => setIsLoading(false), 2000);
+      return;
+    }
+
+    // 'load' event ka wait karo
+    const handleLoad = () => {
+      setTimeout(() => setIsLoading(false), 500);
+    };
+
+    window.addEventListener("load", handleLoad);
+
+    // Fallback: 4 second baad forcibly hide karo (agar koi asset atak gaya toh)
+    const timer = setTimeout(() => setIsLoading(false), 4000);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      {/* Loader Overlay - Jab tak loading true hai tab tak dikhega */}
+      {isLoading && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background/95 backdrop-blur-sm transition-opacity duration-700">
+          <Loader />
+        </div>
+      )}
+
+      {/* Actual App Content - Pehle invisible, load hone ke baad fade-in */}
+      <div
+        className={cn(
+          "transition-opacity duration-700",
+          isLoading ? "opacity-0" : "opacity-100"
+        )}
+      >
+        {/* Nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </div>
     </QueryClientProvider>
   );
 }
